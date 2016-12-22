@@ -34,9 +34,13 @@ Media.prototype.parseParams = function (json) {
     hash.commentCount = json.comment_count;
     hash.originalHeight = json.original_height;
     hash.mediaType = json.media_type;
-    hash.deviceTimestamp = json.device_timestamp;
+    hash.deviceTimestamp = (json.device_timestamp > 9999999999) ?  ~~(json.device_timestamp / 1000) : json.device_timestamp;
     if(json.view_count)
         hash.viewCount = json.view_count;
+    if (json.video_versions)
+        hash.video = json.video_versions;
+    if (json.video_duration)
+        hash.video.duration = json.video_duration;
     if(_.isObject(json.location)) {
         var location = json.location;
         location.location = json.location;
