@@ -35,6 +35,7 @@ Media.prototype.parseParams = function (json) {
     hash.originalHeight = json.original_height;
     hash.mediaType = json.media_type;
     hash.deviceTimestamp = (json.device_timestamp > 9999999999) ?  (json.device_timestamp+'').slice(0, 10) * 1 : json.device_timestamp;
+    hash.createAt = parseInt(json.taken_at);
     if(json.view_count)
         hash.viewCount = json.view_count;
     if (json.video_versions)
